@@ -1,5 +1,8 @@
 import 'package:angle_on/class/movie_card.dart';
+import 'package:angle_on/screens/home_page.dart';
 import 'package:flutter/material.dart';
+
+import 'movie_description_page.dart';
 
 class MovieCardDesign extends StatefulWidget {
   MovieCard? item;
@@ -12,10 +15,17 @@ class MovieCardDesign extends StatefulWidget {
 class _MovieCardDesignState extends State<MovieCardDesign> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
-        image: DecorationImage(image: AssetImage(widget.item!.movieImage),fit:BoxFit.cover),
+    return InkWell(
+      onTap: () {
+       setState(() {
+         Navigator.push(context, MaterialPageRoute(builder: (context) => DescriptionPage(item: widget.item!),));
+       });
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4),
+          image: DecorationImage(image: AssetImage(widget.item!.movieImage),fit:BoxFit.cover),
+        ),
       ),
     );
   }
